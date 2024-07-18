@@ -27,6 +27,10 @@ import Chat from './pages/Screens/Chat';
 import ChatGroup from './pages/Screens/ChatGroup';
 import Addorders from './pages/Screens/Addorders';
 import AddSalesManager from './pages/Screens/AddSalesManager';
+import AddLicesingManager from './pages/Screens/AddLicesingManager';
+import AddProjectManager from './pages/Screens/AddProjectManager';
+import AddStockManager from './pages/Screens/AddStockManager';
+import AddMaintenanceManager from './pages/Screens/AddMaintenanceManager';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -258,6 +262,43 @@ function App() {
                   </>
                 }
               />
+              <Route
+                path="/addlicesingmanager"
+                element={
+                  <>
+                    <PageTitle title="AddLicesingManager" />
+                    <AddLicesingManager />
+                  </>
+                }
+              />
+              <Route
+                path="/addprojectmanager"
+                element={
+                  <>
+                    <PageTitle title="AddProjectManager" />
+                    <AddProjectManager />
+                  </>
+                }
+              />
+              <Route
+                path="/addStockmanager"
+                element={
+                  <>
+                    <PageTitle title="AddStockManager" />
+                    <AddStockManager />
+                  </>
+                }
+              />
+              <Route
+                path="/addmaintenancemanager"
+                element={
+                  <>
+                    <PageTitle title="AddMaintenanceManager" />
+                    <AddMaintenanceManager />
+                  </>
+                }
+              />
+            
             </Routes>
           </DefaultLayout>
         }

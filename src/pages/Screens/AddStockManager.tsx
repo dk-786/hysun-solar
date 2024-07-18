@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-const AddSalesManager = () => {
-    return (
-        <>
+const AddStockManager = () => {
+  return (
+    <>
             <Breadcrumb pageName="Form Layout" />
 
             <div>
@@ -15,7 +15,7 @@ const AddSalesManager = () => {
                             <h3 className="font-medium text-black dark:text-white">
                                 Contact Form
                             </h3>
-                            <Link to="/salesmanager">
+                            <Link to="/Stockmanager">
                                 <button className="flex items-center justify-center gap-1">
                                     <FaArrowLeftLong />
                                     <span>Go Back</span>
@@ -179,7 +179,7 @@ const AddSalesManager = () => {
                 </div>
             </div>
         </>
-    )
+  )
 }
 
-export default AddSalesManager
+export default AddStockManager
