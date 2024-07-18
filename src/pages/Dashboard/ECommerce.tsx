@@ -6,9 +6,45 @@ import ChartTwo from '../../components/Charts/ChartTwo';
 import ChatCard from '../../components/Chat/ChatCard';
 import TableOne from '../../components/Tables/TableOne';
 import './ECommerce.css';
+import  { useState, useEffect } from 'react';
 
 const ECommerce: React.FC = () => {
+  const [userCount, setUserCount] = useState(0);
+  const fetchUserCount = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Get token from localStorage
+      if (!token) {
+        console.error('No token found in localStorage');
+        return;
+      }
+  
+      const response = await fetch('https://solar-project-delta.vercel.app/api/auth/getuser', {
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include token in the Authorization header
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+  
+      const data = await response.json();
+      setUserCount(data.length);
+    } catch (error) {
+      console.error('Error fetching user count:', error);
+    }
+  };
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetchUserCount();
+    } else {
+      console.log('No token found, user might not be logged in');
+    }
+  }, []);
   return (
+    
     <>
       <div
         className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5 "
@@ -56,7 +92,7 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Users" total="0" rate="0%" levelDown>
+        <CardDataStats title="Total Users" total={userCount.toString()} rate="0%" levelDown>
           <svg
             className="fill-green-600 dark:fill-white"
             width="22"

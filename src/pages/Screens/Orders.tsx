@@ -1,82 +1,124 @@
-import { Product } from '../../types/product';
-
-import UserOne from '../../images/user/user-01.png';
-import UserOne1 from '../../images/user/user-02.png';
-import UserOne2 from '../../images/user/user-03.png';
-import UserOne3 from '../../images/user/user-04.png';
-import UserOne4 from '../../images/user/user-05.png';
-import UserOne5 from '../../images/user/user-06.png';
-import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CiSquarePlus } from 'react-icons/ci';
+import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb'; // Ensure this path is correct
+import axios from 'axios';
 
-const productData = [
-  {
-    image: UserOne,
-    name: 'Kiratan Patel',
-    phonenumber: 917693538209,
-    city: 'Ahmedabad',
-    photos: 'photos',
-    billamount: 45,
-    kilowatt: '1kw',
-  },
-  {
-    image: UserOne1,
-    name: 'Hetvi Patel',
-    phonenumber: 917638638206,
-    city: 'Surat',
-    photos: 'photos',
-    billamount: 10,
-    kilowatt: '2kw',
-  },
-  {
-    image: UserOne2,
-    name: 'Jay Patel',
-    phonenumber: 919353538202,
-    city: 'Rajkot',
-    photos: 'photos',
-    billamount: 150,
-    kilowatt: '10kw',
-  },
-  {
-    image: UserOne3,
-    name: 'Sonal Patel',
-    phonenumber: 913863538205,
-    city: 'Gandhinagar',
-    photos: 'photos',
-    billamount: 76,
-    kilowatt: '23kw',
-  },
-  {
-    image: UserOne4,
-    name: 'Umang Patel',
-    phonenumber: 917658438201,
-    city: 'Amreli',
-    photos: 'photos',
-    billamount: 67,
-    kilowatt: '24kw',
-  },
-  {
-    image: UserOne5,
-    name: 'Hashmukh Patel',
-    phonenumber: 917693538209,
-    city: 'Mumbai',
-    photos: 'photos',
-    billamount: 87,
-    kilowatt: '14kw',
-  },
-];
+type Order = {
+  _id: string;
+  userid: {
+    cords: {
+      latitude: number;
+      longitude: number;
+    };
+    _id: string;
+    name: string;
+    email: string;
+    phonenumber: string;
+    fulladdress: string;
+    state: string;
+    district: string;
+    subdistrict: string;
+    villageorcity: string;
+    pincode: string;
+    coins: number;
+    referralCode: string;
+    referredUsers: string[];
+    createdAt: string;
+    updatedAt: string;
+    referredBy: string;
+  } | null; // userid can be null
+  images: string[];
+  lightbill: string;
+  SalesManager: {
+    managerid: string | null;
+    managerModel: string;
+    status: string;
+    message: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  LicenseManager: {
+    managerid: string | null;
+    managerModel: string;
+    status: string;
+    message: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  ProjectManager: {
+    managerid: string | null;
+    managerModel: string;
+    status: string;
+    message: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  MaintainaneceManager: {
+    managerid: string | null;
+    managerModel: string;
+    status: string;
+    message: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  StoreManager: {
+    managerid: string | null;
+    managerModel: string;
+    status: string;
+    message: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  kilowatt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type ApiResponse = {
+  data: Order[];
+  message: string;
+  status: boolean;
+};
 
 const Orders = () => {
+  const [orders, setOrders] = useState<Order[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        if (!token) {
+          console.error('No token found in local storage');
+          return;
+        }
+
+        const response = await axios.get<ApiResponse>('https://solar-project-delta.vercel.app/api/order/', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in the request headers
+          },
+        });
+        setOrders(response.data.data);
+      } catch (error) {
+        console.error('There was an error fetching the orders!', error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
   return (
     <>
       <Breadcrumb pageName="Orders" />
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className=" flex justify-between items-center py-6 px-4 md:px-6 xl:px-7.5">
-          <h4 className="text-xl font-semibold text-black dark:text-white">
-            Top Orders
-          </h4>
+      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ">
+        <div className="flex justify-between items-center py-6 px-4 md:px-6 xl:px-7.5">
+          <h4 className="text-xl font-semibold text-black dark:text-white">Top Orders</h4>
           <Link to="/addorders">
             <button className="flex items-center justify-center gap-1">
               <CiSquarePlus />
@@ -102,52 +144,45 @@ const Orders = () => {
             <p className="font-medium">Bill Amount</p>
           </div>
           <div className="col-span-1 flex items-center">
-            <p className="font-medium">Kilowattt</p>
+            <p className="font-medium">Kilowatt</p>
           </div>
         </div>
 
-        {productData.map((product, key) => (
+        {orders.map((order, key) => (
           <div
             className="grid grid-cols-7 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-9 md:px-6 2xl:px-7.5"
             key={key}
           >
             <div
               className="col-span-3 flex items-center cursor-pointer"
-              onClick={() => {
-                navigate('/profile');
-              }}
+              onClick={() => navigate('/profile')}
             >
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="h-12.5 w-12 rounded-md">
-                  <img src={product.image} alt="Product" />
+                  <img src={order.images[0]} alt="User" />
                 </div>
-                <p className="text-sm text-black dark:text-white">
-                  {product.name}
-                </p>
+                <p className="text-sm text-black dark:text-white">{order.userid ? order.userid.name : 'Unknown User'}</p>
               </div>
             </div>
+            
             <div className="col-span-2 hidden items-center sm:flex">
-              <p className="text-sm text-black dark:text-white">
-                +{product.phonenumber}
-              </p>
+              <p className="text-sm text-black dark:text-white">{order.userid ? order.userid.phonenumber : 'N/A'}</p>
             </div>
             <div className="col-span-1 flex items-center">
-              <p className="text-sm text-black dark:text-white">
-                {product.city}
-              </p>
-            </div>
-            <div className="h-12.5 w-12 rounded-md">
-              <img src={product.image} alt="Product" />
+              <p className="text-sm text-black dark:text-white">{order.userid ? order.userid.villageorcity : 'N/A'}</p>
             </div>
             <div className="col-span-1 flex items-center">
-              <p className="text-sm text-black dark:text-white">
-                ${product.billamount}
-              </p>
+              {order.images && order.images.length > 0 ? (
+                <img className="h-12.5 w-12 rounded-md" src={order.images[0]} alt="Photos" />
+              ) : (
+                <p className="text-sm text-black dark:text-white">No photos</p>
+              )}
             </div>
             <div className="col-span-1 flex items-center">
-              <p className="text-sm text-black dark:text-white ">
-                {product.kilowatt}
-              </p>
+              <p className="text-sm text-black dark:text-white">₹{order.lightbill}</p>
+            </div>
+            <div className="col-span-1 flex items-center">
+              <p className="text-sm text-black dark:text-white">{order.kilowatt} kW</p>
             </div>
           </div>
         ))}
