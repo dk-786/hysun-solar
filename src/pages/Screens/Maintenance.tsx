@@ -4,7 +4,8 @@ import ProductTwo from '../../images/product/product-02.png';
 import ProductThree from '../../images/product/product-03.png';
 import ProductFour from '../../images/product/product-04.png';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { CiSquarePlus } from 'react-icons/ci';
 
 const productData: Product[] = [
     {
@@ -47,10 +48,16 @@ const productData: Product[] = [
         <>
         <Breadcrumb pageName="Maintenance" />
        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-       <div className="py-6 px-4 md:px-6 xl:px-7.5">
+       <div className="flex justify-between items-center py-6 px-4 md:px-6 xl:px-7.5">
          <h4 className="text-xl font-semibold text-black dark:text-white">
            Top Products
          </h4>
+         <Link to="/addmaintenancemanager">
+            <button className="flex items-center justify-center gap-1">
+              <CiSquarePlus />
+              <span>Add MaintenanceManager</span>
+            </button>
+          </Link>
        </div>
    
        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
@@ -93,14 +100,14 @@ const productData: Product[] = [
            </div>
            <div className="col-span-1 flex items-center">
              <p className="text-sm text-black dark:text-white">
-               ${product.price}
+             ₹{product.price}
              </p>
            </div>
            <div className="col-span-1 flex items-center">
              <p className="text-sm text-black dark:text-white">{product.sold}</p>
            </div>
            <div className="col-span-1 flex items-center">
-             <p className="text-sm text-meta-3">${product.profit}</p>
+             <p className="text-sm text-meta-3">₹{product.profit}</p>
            </div>
          </div>
        ))}

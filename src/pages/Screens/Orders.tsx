@@ -179,7 +179,7 @@ const Orders = () => {
               )}
             </div>
             <div className="col-span-1 flex items-center">
-              <p className="text-sm text-black dark:text-white">${order.lightbill}</p>
+              <p className="text-sm text-black dark:text-white">₹{order.lightbill}</p>
             </div>
             <div className="col-span-1 flex items-center">
               <p className="text-sm text-black dark:text-white">{order.kilowatt} kW</p>

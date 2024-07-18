@@ -10,7 +10,7 @@ const SignUp: React.FC = () => {
     <>
       {/* <Breadcrumb pageName="Sign Up" /> */}
 
-      <div className=" vh-100 rounded-sm border border-stroke bg-white shadow-default  dark:border-strokedark dark:bg-boxdark overflow-hidden">
+      <div className="rounded-sm border border-stroke bg-white shadow-default  dark:border-strokedark dark:bg-boxdark overflow-hidden">
         <div className="flex flex-wrap items-center ">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
@@ -290,6 +290,24 @@ const SignUp: React.FC = () => {
                     </span>
                   </div>
                 </div>
+
+                <div className="mb-4.5">
+                  <label className="mb-2.5 block text-black dark:text-white">
+                    Rule<span className="text-meta-1">*</span>
+                  </label>
+                  <select
+                    className="w-full rounded border-[1.5px] h-10 border-stroke bg-transparent px-2 text-black dark:text-white outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  >
+                    <option value="" disabled selected >Select your Manager</option>
+                    <option value="home"> Sales Manager</option>
+                    <option value="work">Licesing Manager</option>
+                    <option value="other">Project Manager</option>
+                    <option value="other">Stock Manager</option>
+                    <option value="other">Stock</option>
+                    <option value="other">Maintenance</option>
+                  </select>
+                </div>
+
 
                 <div className="mb-5">
                   <input
