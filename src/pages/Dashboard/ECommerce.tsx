@@ -21,7 +21,7 @@ const ECommerce: React.FC = () => {
   
       const response = await fetch('https://solar-project-delta.vercel.app/api/auth/customers/', {
         headers: {
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njk3YzFlZWUyODE5OGNmNjQ5MjBmMjUiLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MjEyOTY0OTB9.M5sMqoI4tZV_Wn-zjaO_69DabgeBgZiWCbaDuwwRtrU`, 
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
@@ -91,7 +91,7 @@ const ECommerce: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Users" total={userCount.toString()} rate="0%" levelDown>
+        <CardDataStats title="Total Users"  total={userCount !== undefined ? userCount.toString() : ''} rate="0%" levelDown>
           <svg
             className="fill-green-600 dark:fill-white"
             width="22"
