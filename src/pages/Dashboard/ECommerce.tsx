@@ -6,21 +6,22 @@ import ChartTwo from '../../components/Charts/ChartTwo';
 import ChatCard from '../../components/Chat/ChatCard';
 import TableOne from '../../components/Tables/TableOne';
 import './ECommerce.css';
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const ECommerce: React.FC = () => {
   const [userCount, setUserCount] = useState(0);
+
   const fetchUserCount = async () => {
     try {
-      const token = localStorage.getItem('token'); // Get token from localStorage
+      const token = localStorage.getItem('token');
       if (!token) {
         console.error('No token found in localStorage');
         return;
       }
   
-      const response = await fetch('https://solar-project-delta.vercel.app/api/auth/getuser', {
+      const response = await fetch('https://solar-project-delta.vercel.app/api/auth/customers/', {
         headers: {
-          'Authorization': `Bearer ${token}`, // Include token in the Authorization header
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njk3YzFlZWUyODE5OGNmNjQ5MjBmMjUiLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MjEyOTY0OTB9.M5sMqoI4tZV_Wn-zjaO_69DabgeBgZiWCbaDuwwRtrU`, 
           'Content-Type': 'application/json'
         }
       });
@@ -35,6 +36,7 @@ const ECommerce: React.FC = () => {
       console.error('Error fetching user count:', error);
     }
   };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -43,14 +45,11 @@ const ECommerce: React.FC = () => {
       console.log('No token found, user might not be logged in');
     }
   }, []);
+
   return (
-    
     <>
-      <div
-        className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5 "
-       
-      >
-        <CardDataStats title="Total Profit" total="$0" rate="0%" levelUp >
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
+        <CardDataStats title="Total Profit" total="$0" rate="0%" levelUp>
           <svg
             className="fill-green-600 dark:fill-white"
             width="20"
@@ -118,10 +117,9 @@ const ECommerce: React.FC = () => {
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <ChartOne />
+        <ChartOne />  
         <ChartTwo />
         <ChartThree />
-        {/* <MapOne /> */}
         <div className="col-span-12 xl:col-span-8">
           <TableOne />
         </div>
