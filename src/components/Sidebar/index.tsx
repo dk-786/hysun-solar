@@ -66,8 +66,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 w-73 lg:py-6.5">
         <NavLink to="/" className="flex items-center   gap-5 ">
           <img src={Logo1} alt="Logo" className="w-12" />
-          <span className="text-2xl mt-2 font-bold  text-white  ">
-            HYSUNSOLAR
+          <span className="text-xl mt-2 font-bold  text-white  ">
+            HYSUN SOLAR
           </span>
         </NavLink>
 
@@ -81,8 +81,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <svg
             className="fill-current text-white"
             width="20"
-            height="18"
-            viewBox="0 0 20 18"
+            height="25"
+            viewBox="0 -5 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
