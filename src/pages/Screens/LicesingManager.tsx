@@ -116,7 +116,7 @@
 // }
 
 // export default LicesingManager
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { CiSquarePlus } from 'react-icons/ci';
@@ -218,16 +218,18 @@ const LicesingManager = () => {
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex justify-between items-center py-6 px-4 md:px-6 xl:px-7.5">
           <h4 className="text-xl font-semibold text-black dark:text-white">
-          LicesingManager Managers
+          Licensing Managers
           </h4>
           <Link to="/addlicesingmanager">
             <button className="flex items-center justify-center gap-1">
               <CiSquarePlus />
-              <span>Add Licesing Manager</span>
+              <span>Add Licensing Manager</span>
             </button>
           </Link>
+       
         </div>
-        <hr />
+       
+        <hr/>
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse">
             <thead>
