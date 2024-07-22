@@ -19,7 +19,7 @@ const ECommerce: React.FC = () => {
         return;
       }
   
-      const response = await fetch('https://solar-project-delta.vercel.app/api/auth/customers/', {
+      const response = await fetch('https://solar-project-delta.vercel.app/api/customers/all', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const ECommerce: React.FC = () => {
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
-        <CardDataStats title="Total Profit" total="$0" rate="0%" levelUp>
+        <CardDataStats title="Total Profit" total=" ₹0" rate="0%" levelUp>
           <svg
             className="fill-green-600 dark:fill-white"
             width="20"
