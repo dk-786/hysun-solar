@@ -102,12 +102,12 @@ const SalesManager = () => {
           <h4 className="text-xl font-semibold text-black dark:text-white">
             Sales Managers
           </h4>
-          <Link to="/addsalesmanager">
+          {/* <Link to="/addsalesmanager">
             <button className="flex items-center justify-center gap-1">
               <CiSquarePlus />
               <span>Add Sales Manager</span>
             </button>
-          </Link>
+          </Link> */}
         </div>
         <hr />
         <div className="overflow-x-auto">

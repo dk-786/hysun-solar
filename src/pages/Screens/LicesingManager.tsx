@@ -220,12 +220,12 @@ const LicesingManager = () => {
           <h4 className="text-xl font-semibold text-black dark:text-white">
           Licensing Managers
           </h4>
-          <Link to="/addlicesingmanager">
+          {/* <Link to="/addlicesingmanager">
             <button className="flex items-center justify-center gap-1">
               <CiSquarePlus />
               <span>Add Licensing Manager</span>
             </button>
-          </Link>
+          </Link> */}
        
         </div>
        

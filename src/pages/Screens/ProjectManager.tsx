@@ -70,12 +70,12 @@ const ProjectManage = () => {
           <h4 className="text-xl font-semibold text-black dark:text-white">
           Project Managers
           </h4>
-          <Link to="/addprojectmanager">
+          {/* <Link to="/addprojectmanager">
             <button className="flex items-center justify-center gap-1">
               <CiSquarePlus />
               <span>Add Project Manager</span>
             </button>
-          </Link>
+          </Link> */}
        
         </div>
         <hr/>

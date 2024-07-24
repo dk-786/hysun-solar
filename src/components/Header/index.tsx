@@ -4,6 +4,7 @@ import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownUser';
 import LogoIcon from '../../images/logo/logo-icon.svg';
 import DarkModeSwitcher from './DarkModeSwitcher';
+import { CiSquarePlus } from 'react-icons/ci';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -99,6 +100,12 @@ const Header = (props: {
 
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
+            <Link to="/addexecutive">
+              <button className="flex items-center justify-center gap-1 text-black">
+                <CiSquarePlus />
+                <span>Add Executive</span>
+              </button>
+            </Link>
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}

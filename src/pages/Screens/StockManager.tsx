@@ -221,12 +221,12 @@ const StockManager = () => {
           <h4 className="text-xl font-semibold text-black dark:text-white">
           StockManager Managers
           </h4>
-          <Link to="/addStockmanager">
+          {/* <Link to="/addStockmanager">
             <button className="flex items-center justify-center gap-1">
               <CiSquarePlus />
               <span>Add Stock Manager</span>
             </button>
-          </Link>
+          </Link> */}
         </div>
         <hr />
         <div className="overflow-x-auto">
