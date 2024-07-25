@@ -143,7 +143,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           {/* <!-- Menu Group --> */}
           <div>
             <ul className="mb-6 flex flex-col gap-1.5">
-              {role === 'MAINTAINANECEMANAGER' ? (
+              {(role === 'SALESMANAGER' || role === 'MAINTAINANECEMANAGER'|| role === 'LICENSEMANAGER' || role === 'PROJECTHANDLER' || role ==='STOREMANAGER')  ? (
                 <>
           
                   <NavLink
@@ -235,7 +235,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     </NavLink>
                   </li>
                 </>
-              ) : (
+              ) :  (
                 <>
                   <NavLink
                     to="/"
@@ -347,7 +347,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     >
                     
                       <i className="fa-solid fa-chart-simple fill-current"></i>
-                      Sales Manager
+                      Sales Executive
                     </NavLink>
                   </li>
                   <li>
@@ -360,7 +360,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     >
                      
                       <i className="fa-solid fa-file-invoice fill-current"></i>
-                      Licesing Manager
+                      Licesing Executive
                     </NavLink>
                   </li>
                   <li>
@@ -373,7 +373,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     >
                     
                       <i className="fa-solid fa-bars-progress fill-current"></i>
-                      Project Manager
+                      Project Executive
                     </NavLink>
                   </li>
                   <li>
@@ -386,7 +386,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     >
                      
                       <i className="fa-solid fa-socks fill-current"></i>
-                      Stock Manager
+                      Stock Executive
                     </NavLink>
                   </li>
 
@@ -400,7 +400,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     >
                      
                       <i className="fa-brands fa-ubuntu fill-current"></i>
-                      Maintenance Manager
+                      Maintenance Executive
                     </NavLink>
                   </li>
                 </>
@@ -411,7 +411,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </div>
 
           {/* <!-- Others Group --> */}
-          <div  onClick={handleLogout}>
+          <div  onClick={handleLogout} className='absolute bottom-0 w-[84%]'>
             <ul className="mb-6 flex flex-col gap-1.5 ">
               <NavLink
                 to="#"
