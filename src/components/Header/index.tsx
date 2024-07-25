@@ -101,7 +101,7 @@ const Header = (props: {
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             <Link to="/addexecutive">
-              <button className="flex items-center justify-center gap-1 text-black">
+              <button className="flex items-center justify-center gap-1 text-black dark:text-white">
                 <CiSquarePlus />
                 <span>Add Executive</span>
               </button>

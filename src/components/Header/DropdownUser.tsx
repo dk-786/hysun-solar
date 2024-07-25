@@ -1,10 +1,59 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ClickOutside from '../ClickOutside';
 import UserOne from '../../images/user/user-01.png';
+import * as jwtDecode from 'jwt-decode';
+
+const fetchUserData = async () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const decodedToken = jwtDecode.jwtDecode(token);
+      const response = await fetch(
+        'https://solar-project-delta.vercel.app/api/auth/getuser',
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (response.ok) {
+        const data = await response.json();
+        return { ...decodedToken, ...data }; // Combine decoded token with API data if needed
+      } else {
+        console.error('Failed to fetch user data');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error decoding token or fetching data:', error);
+      return null;
+    }
+  }
+  return null;
+};
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      const data = await fetchUserData();
+      setUserData(data);
+    };
+    loadUserData();
+  }, []);
+
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
+  const handleLogout = () => {
+   
+    localStorage.removeItem('decodedToken');
+    window.location.replace('/auth/signin');
+  };
+
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -13,17 +62,29 @@ const DropdownUser = () => {
         className="flex items-center gap-4"
         to="#"
       >
-         
         <span className="hidden text-right lg:block">
-      
-          <span className="block text-sm font-medium text-black dark:text-white">
-            Mehul Patel
-          </span>
-          <span className="block text-xs">Sales Manager</span>
+          {userData ? (
+            <>
+              <span className="block text-sm font-medium text-black dark:text-white">
+                {userData.data.name}
+              </span>
+              <span className="block text-xs">{userData.role}</span>
+            </>
+          ) : (
+            <>
+              <span className="block text-sm font-medium text-black dark:text-white">
+                User
+              </span>
+              <span className="block text-xs">Role</span>
+            </>
+          )}
         </span>
-
-        <span className="h-12 w-12 rounded-full">
-          <img src={UserOne} alt="User" />
+        <span className="h-12 w-12 rounded-full flex items-center justify-center overflow-hidden">
+          <img
+            src={userData.data.profilephoto || UserOne}
+            alt="User"
+            className="object-cover w-full h-full"
+          />
         </span>
 
         <svg
@@ -43,7 +104,6 @@ const DropdownUser = () => {
         </svg>
       </Link>
 
-      {/* <!-- Dropdown Start --> */}
       {dropdownOpen && (
         <div
           className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark`}
@@ -100,7 +160,7 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-green-600 lg:text-base">
+          <button className="flex items-center gap-3.5 px-6 py-3 text-sm font-medium duration-300 ease-in-out hover:text-green-600 lg:text-base"  onClick={handleLogout}>
             <svg
               className="fill-current"
               width="22"
@@ -122,7 +182,7 @@ const DropdownUser = () => {
           </button>
         </div>
       )}
-      {/* <!-- Dropdown End --> */}
+    
     </ClickOutside>
   );
 };
